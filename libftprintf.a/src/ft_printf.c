@@ -106,7 +106,7 @@ int format_branch(char format, va_list list)
   if (format == 'c') print_size += print_char(va_arg(list, int));
   if (format == 's') print_size += print_string(va_arg(list, char *));
   if (format == 'p') print_size += print_pointer(va_arg(list, uintptr_t));
-  if (format == 'd') print_size += print_int(va_arg(list, int));
+  if (format == 'd' || format == 'i') print_size += print_int(va_arg(list, int));
   if (format == 'u') print_size += print_unsigned_int(va_arg(list, unsigned int));
   if (format == 'x') print_size += print_lower_hex(va_arg(list, unsigned int));
   if (format == 'X') print_size += print_upper_hex(va_arg(list, unsigned int));
