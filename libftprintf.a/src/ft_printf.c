@@ -28,11 +28,19 @@ int print_string(char *s)
   return (print_size);
 }
 
-int write_pointer(uintptr_t num)
+int write_lower_hex(unsigned long long num)
 {
   if (num != 0) {
-    if (num % 16 <= 9) return write_pointer(num / 16) + print_char(num % 16 + '0');
-    else return write_pointer(num / 16) + print_char(num % 16 - 10 + 'a');
+    if (num % 16 <= 9) return write_lower_hex(num / 16) + print_char(num % 16 + '0');
+    else return write_lower_hex(num / 16) + print_char(num % 16 - 10 + 'a');
+  }
+}
+
+int write_upper_hex(unsigned long long num)
+{
+  if (num != 0) {
+    if (num % 16 <= 9) return write_upper_hex(num / 16) + print_char(num % 16 + '0');
+    else return write_upper_hex(num / 16) + print_char(num % 16 - 10 + 'A');
   }
 }
 
@@ -42,7 +50,7 @@ int print_pointer(uintptr_t num)
   char  *hex_num;
 
   print_size = print_string("0x");
-  print_size += write_pointer(num);
+  print_size += write_lower_hex(num);
   return (print_size);
 }
 
@@ -72,10 +80,16 @@ int print_unsigned_int(unsigned int num)
   return (print_int(num));
 }
 
-int print_hex(unsigned int num)
+int print_lower_hex(unsigned int num)
 {
   if (num == 0) return (print_char('0'));
-  return (write_pointer(num));
+  return (write_lower_hex(num));
+}
+
+int print_upper_hex(unsigned int num)
+{
+  if (num == 0) return (print_char('0'));
+  return (write_upper_hex(num));
 }
 
 int print_percent()
@@ -93,7 +107,8 @@ int format_branch(char format, va_list list)
   if (format == 'p') print_size += print_pointer(va_arg(list, uintptr_t));
   if (format == 'd') print_size += print_int(va_arg(list, int));
   if (format == 'u') print_size += print_unsigned_int(va_arg(list, unsigned int));
-  if (format == 'x' || format == 'X') print_size += print_hex(va_arg(list, unsigned int));
+  if (format == 'x') print_size += print_lower_hex(va_arg(list, unsigned int));
+  if (format == 'X') print_size += print_upper_hex(va_arg(list, unsigned int));
   if (format == '%') print_size += print_percent();
   return (print_size);
 }
@@ -127,8 +142,8 @@ int ft_printf(const char *s,...)
 
 int main(){
   int *i;
-  int ppp = printf("%s, %c, %d, %u, %x %%\n%p\n","abbvc",'b',-199,10, 10 ,&i);
-  int print_size = ft_printf("%s, %c, %d, %u, %x %%\n%p\n","abbvc",'b',-199,10,10,&i);
+  int ppp = printf("%s, %c, %d, %u, %X %%\n%p\n","abbvc",'b',-199,100, 1000 ,&i);
+  int print_size = ft_printf("%s, %c, %d, %u, %X %%\n%p\n","abbvc",'b',-199,100,1000,&i);
 
   // write_pointer(&i);
   printf("%d %d\n",print_size,ppp);
