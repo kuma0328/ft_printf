@@ -56,6 +56,7 @@ int print_int(int num)
   long long n = num;
   int print_size;
 
+  if (n == 0) return (print_char('0'));
   print_size = 0;
   if (n < 0)
   {
@@ -73,6 +74,7 @@ int print_unsigned_int(unsigned int num)
 
 int print_hex(unsigned int num)
 {
+  if (num == 0) return (print_char('0'));
   return (write_pointer(num));
 }
 
@@ -123,11 +125,11 @@ int ft_printf(const char *s,...)
   return (print_size);
 }
 
-int main()
-{
+int main(){
   int *i;
-  int ppp = printf("%s, %c, %d, %u, %x %%\n%p\n","abbvc",'b',-199,199, 78 ,&i);
-  int print_size = ft_printf("%s, %c, %d, %u, %x %%\n%p\n","abbvc",'b',-199,199,78,&i);
+  int ppp = printf("%s, %c, %d, %u, %x %%\n%p\n","abbvc",'b',-199,10, 10 ,&i);
+  int print_size = ft_printf("%s, %c, %d, %u, %x %%\n%p\n","abbvc",'b',-199,10,10,&i);
+
   // write_pointer(&i);
   printf("%d %d\n",print_size,ppp);
 }
