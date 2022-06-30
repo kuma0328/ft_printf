@@ -2,6 +2,7 @@
 #include<stdarg.h>
 #include<unistd.h>
 #include<stdint.h>
+
 int print_char(int c)
 {
   int print_size;
