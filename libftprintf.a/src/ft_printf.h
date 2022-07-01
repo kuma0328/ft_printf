@@ -9,9 +9,8 @@
 int print_char(int c);
 int print_percent();
 int print_upper_hex(unsigned int num);
-int write_upper_hex(unsigned long long num);
 int print_lower_hex(unsigned int num);
-int write_lower_hex(unsigned long long num);
+int write_hex(unsigned long long num, char c);
 int get_hex_size(unsigned long long num);
 int print_int(int num);
 int write_int(long long num);

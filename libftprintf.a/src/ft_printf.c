@@ -49,8 +49,9 @@ int ft_printf(const char *s,...)
   return (res);
 }
 
-// int main(){
-//   int *i;
-//   int ppp = printf("%s, %c, %d, %u, %X %%\n%p\n","abbvc",'b',-199,100, 1000 ,&i);
-//   int print_size = ft_printf("%s, %c, %d, %u, %X %%\n%p\n","abbvc",'b',-199,100,1000,&i);
-// }
+int main(){
+  int *i;
+  int ppp = printf("%s, %c, %d, %u, %X %%\n%p\n","abbvc",'b',-199,100, 1000 ,&i);
+  int print_size = ft_printf("%s, %c, %d, %u, %X %%\n%p\n","abbvc",'b',-199,100,1000,&i);
+  printf("%d %d\n",ppp,print_size);
+}
